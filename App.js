@@ -4,21 +4,23 @@ import AddItem from './src/components/AddItem'
 import useListItems from './src/hooks/useListItems'
 
 export default function App() {
-	const { addItem, handleChange, input, list } = useListItems()
+	const { addItem, handleChange, value, items } = useListItems()
 
 	return (
 		<View style={styles.container}>
 			<AddItem
 				onPress={addItem}
 				onChange={handleChange}
-				isDisabled={input === ''}
-				value={input}
+				isDisabled={value === ''}
+				value={value}
 			/>
-			{list.map((item) => (
-				<View key={item.id}>
-					<Text>{item.name}</Text>
-				</View>
-			))}
+			<View style={styles.itemsContainer}>
+				{items.map((item) => (
+					<View key={item.id}>
+						<Text>{item.name}</Text>
+					</View>
+				))}
+			</View>
 		</View>
 	)
 }
@@ -30,4 +32,7 @@ const styles = StyleSheet.create({
 		margin: 50,
 		marginHorizontal: 10,
 	},
+  itemsContainer: {
+    marginHorizontal: 10
+  }
 })

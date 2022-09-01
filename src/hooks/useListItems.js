@@ -2,21 +2,21 @@ import { useState } from 'react'
 import { data } from '../../data/data'
 
 const useListItems = () => {
-	const [input, setInput] = useState('')
-	const [list, setList] = useState(data)
+	const [value, setValue] = useState('')
+	const [items, setItems] = useState(data)
 	const addItem = () => {
-		setList([...list, { name: input, id: list.length + 1 }])
-		setInput('')
+		setItems([...items, { name: value, id: items.length + 1 }])
+		setValue('')
 	}
 
 	const handleChange = (text) => {
-		setInput(text)
+		setValue(text)
 	}
 	return {
 		addItem,
 		handleChange,
-		input,
-		list,
+		value,
+		items,
 	}
 }
 
