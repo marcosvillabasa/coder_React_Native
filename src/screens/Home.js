@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, Platform, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Platform, StyleSheet, View } from 'react-native'
 import AddItem from '../components/AddItem'
 import Item from '../components/Item'
 import useListItems from '../hooks/useListItems'
@@ -18,11 +18,6 @@ const Home = () => {
 				value={value}
 			/>
 			<View style={styles.itemsContainer}>
-				{/* {items.map((item) => (
-					<View key={item.id}>
-						<Text>{item.name}</Text>
-					</View>
-				))} */}
 				<FlatList
 					data={items}
 					renderItem={renderItem}
