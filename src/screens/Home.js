@@ -34,14 +34,8 @@ const Home = () => {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		color: 'white',
-		margin: 50,
-		marginHorizontal: 10,
-	},
 	itemsContainer: {
-		marginHorizontal: 10,
+		marginHorizontal: 20,
 		marginVertical: 10,
 	},
 })
