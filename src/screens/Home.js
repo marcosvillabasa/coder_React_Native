@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Platform, StyleSheet, Text, View } from 'react-native'
 import AddItem from '../components/AddItem'
 import Item from '../components/Item'
 import useListItems from '../hooks/useListItems'
@@ -10,7 +10,7 @@ const Home = () => {
 	const renderItem = ({ item }) => <Item name={item.name} />
 
 	return (
-		<View>
+		<View style={styles.homeContainer}>
 			<AddItem
 				onPress={addItem}
 				onChange={handleChange}
@@ -34,6 +34,9 @@ const Home = () => {
 }
 
 const styles = StyleSheet.create({
+	homeContainer: {
+		marginTop: Platform.OS === 'android' ? 25 : 0
+	},
 	itemsContainer: {
 		marginHorizontal: 20,
 		marginVertical: 10,
