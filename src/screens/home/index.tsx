@@ -3,8 +3,6 @@ import {
 	Button,
 	FlatList,
 	ListRenderItem,
-	Platform,
-	StyleSheet,
 	Text,
 	View,
 } from 'react-native'
