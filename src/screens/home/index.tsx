@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import {
 	Button,
 	FlatList,
-	GestureResponderEvent,
 	ListRenderItem,
-	Modal,
 	Platform,
 	StyleSheet,
 	Text,
@@ -15,6 +13,7 @@ import Item from '../../components/Item'
 import CustomModal from '../../components/modal/CustomModal'
 import useListItems from '../../hooks/useListItems'
 import { IItem } from '../../interfaces'
+import { styles } from './styles'
 
 const Home = () => {
 	const { addItem, handleChange, value, items, setItems } = useListItems()
@@ -86,7 +85,7 @@ const Home = () => {
 							</Text>
 						</View>
 						<View style={styles.modalMessageContainer}>
-							<Text style={styles.selectedTask}>{'selectedTask?.value'}</Text>
+							<Text style={styles.selectedTask}>{itemSelected?.name}</Text>
 						</View>
 						<View style={styles.buttonContainer}>
 							<Button
@@ -102,29 +101,5 @@ const Home = () => {
 		</View>
 	)
 }
-
-const styles = StyleSheet.create({
-	homeContainer: {
-		marginTop: Platform.OS === 'android' ? 25 : 0,
-	},
-	itemsContainer: {
-		marginHorizontal: 20,
-		marginVertical: 10,
-	},
-	modalContent: {
-		marginTop: 40,
-		justifyContent: 'center',
-		textAlign: 'center',
-	},
-	modalMessageContainer: {},
-	modalMessage: {},
-	selectedTask: {},
-	buttonContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		marginVertical: 30,
-	},
-})
 
 export default Home
