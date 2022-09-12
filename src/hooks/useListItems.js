@@ -14,6 +14,7 @@ const useListItems = () => {
 	}
 	return {
 		addItem,
+		setItems,
 		handleChange,
 		value,
 		items,
