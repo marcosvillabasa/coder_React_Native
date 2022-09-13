@@ -6,14 +6,14 @@ interface Props {
 	placeholder?: string
 	value: string
 	selectionColor?: string
-	onChange: () => void
+	onChange: (e: any) => void
 	titleButton: string
 	onPress: () => void
 	color?: string
 	isDisabled: boolean
 }
 
-const AddItem = ({
+export const AddItem = ({
 	placeholder,
 	value,
 	selectionColor = '#016fb9',
@@ -37,4 +37,3 @@ const AddItem = ({
 	)
 }
 
-export default AddItem

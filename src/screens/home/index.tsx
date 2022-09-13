@@ -1,33 +1,25 @@
 import React, { useState } from 'react'
-import {
-	Button,
-	FlatList,
-	GestureResponderEvent,
-	ListRenderItem,
-	Modal,
-	Platform,
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native'
-import AddItem from '../../components/addItem/AddItem'
-import Item from '../../components/Item'
-import CustomModal from '../../components/modal/CustomModal'
-import useListItems from '../../hooks/useListItems'
+import { Button, FlatList, ListRenderItem, Text, View } from 'react-native'
+
+import { AddItem, CustomModal, Item } from '../../components'
+
+import { useItemsActions, useInput } from '../../hooks'
 import { IItem } from '../../interfaces'
+import { styles } from './styles'
 
 const Home = () => {
-	const { addItem, handleChange, value, items, setItems } = useListItems()
+	const { addItem, deleteItem, findItem, items, setItems } = useItemsActions()
+	const { handleChange, value } = useInput()
 	const [visible, setVisible] = useState(false)
 	const [itemSelected, setItemSelected] = useState<IItem>()
 
 	const handleModal = (id?: number) => {
 		setVisible(!visible)
-		setItemSelected(items.find((item) => item.id === id))
+		setItemSelected(findItem(id))
 	}
 
 	const onHandleDeleteItem = (id: number | undefined): void => {
-		setItems(items.filter((item) => item.id !== id))
+		setItems(deleteItem(id))
 		setItemSelected(undefined)
 		setVisible(false)
 	}
@@ -39,7 +31,7 @@ const Home = () => {
 	return (
 		<View style={styles.homeContainer}>
 			<AddItem
-				onPress={addItem}
+				onPress={() => addItem(value)}
 				onChange={handleChange}
 				isDisabled={value === ''}
 				value={value}
@@ -59,34 +51,16 @@ const Home = () => {
 				transparent={true}
 				onRequestClose={() => console.log('on request')}
 			>
-				<View
-					style={{
-						flex: 1,
-						justifyContent: 'center',
-						alignItems: 'center',
-						backgroundColor: 'rgba(0,0,0,0.5)',
-					}}
-				>
-					<View
-						style={{
-							height: 300,
-							width: '80%',
-							backgroundColor: '#EFEEEE',
-							borderRadius: 5,
-							borderColor: '#0193f4',
-							borderWidth: 2,
-						}}
-					>
-						<View style={styles.modalContent}>
-							<Text>Detalle</Text>
+				<View style={styles.modalBg}>
+					<View style={styles.modalContainer}>
+						<View>
+							<Text style={styles.modalTitle}>Detalle</Text>
 						</View>
-						<View style={styles.modalMessageContainer}>
-							<Text style={styles.modalMessage}>
-								¿Estas seguro de que quieres eliminar?
-							</Text>
+						<View>
+							<Text>¿Estas seguro de que quieres eliminar?</Text>
 						</View>
-						<View style={styles.modalMessageContainer}>
-							<Text style={styles.selectedTask}>{'selectedTask?.value'}</Text>
+						<View>
+							<Text style={styles.selectedItem}>{itemSelected?.name}</Text>
 						</View>
 						<View style={styles.buttonContainer}>
 							<Button
@@ -102,29 +76,5 @@ const Home = () => {
 		</View>
 	)
 }
-
-const styles = StyleSheet.create({
-	homeContainer: {
-		marginTop: Platform.OS === 'android' ? 25 : 0,
-	},
-	itemsContainer: {
-		marginHorizontal: 20,
-		marginVertical: 10,
-	},
-	modalContent: {
-		marginTop: 40,
-		justifyContent: 'center',
-		textAlign: 'center',
-	},
-	modalMessageContainer: {},
-	modalMessage: {},
-	selectedTask: {},
-	buttonContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		marginVertical: 30,
-	},
-})
 
 export default Home

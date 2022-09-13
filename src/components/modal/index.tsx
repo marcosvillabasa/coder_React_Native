@@ -9,7 +9,7 @@ interface Props {
 	transparent: boolean
 }
 
-const CustomModal = ({
+export const CustomModal = ({
 	children,
 	visible,
 	animationType,
@@ -28,4 +28,3 @@ const CustomModal = ({
 	)
 }
 
-export default CustomModal
