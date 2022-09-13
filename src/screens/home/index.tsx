@@ -5,13 +5,13 @@ import AddItem from '../../components/addItem/AddItem'
 import Item from '../../components/Item'
 import CustomModal from '../../components/modal/CustomModal'
 
-import {useListItems, useInput } from '../../hooks'
+import { useListItems, useInput } from '../../hooks'
 import { IItem } from '../../interfaces'
 import { styles } from './styles'
 
 const Home = () => {
-	const { addItem, items, setItems } = useListItems()
-	const {handleChange,value } = useInput()
+	const { addItem, deleteItem, items, setItems } = useListItems()
+	const { handleChange, value } = useInput()
 	const [visible, setVisible] = useState(false)
 	const [itemSelected, setItemSelected] = useState<IItem>()
 
@@ -21,7 +21,7 @@ const Home = () => {
 	}
 
 	const onHandleDeleteItem = (id: number | undefined): void => {
-		setItems(items.filter((item) => item.id !== id))
+		setItems(deleteItem(id))
 		setItemSelected(undefined)
 		setVisible(false)
 	}
@@ -59,9 +59,7 @@ const Home = () => {
 							<Text style={styles.modalTitle}>Detalle</Text>
 						</View>
 						<View>
-							<Text>
-								¿Estas seguro de que quieres eliminar?
-							</Text>
+							<Text>¿Estas seguro de que quieres eliminar?</Text>
 						</View>
 						<View>
 							<Text style={styles.selectedItem}>{itemSelected?.name}</Text>
