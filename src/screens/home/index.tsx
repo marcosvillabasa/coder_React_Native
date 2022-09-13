@@ -5,19 +5,19 @@ import AddItem from '../../components/addItem/AddItem'
 import Item from '../../components/Item'
 import CustomModal from '../../components/modal/CustomModal'
 
-import { useListItems, useInput } from '../../hooks'
+import { useItemsActions, useInput } from '../../hooks'
 import { IItem } from '../../interfaces'
 import { styles } from './styles'
 
 const Home = () => {
-	const { addItem, deleteItem, items, setItems } = useListItems()
+	const { addItem, deleteItem, findItem, items, setItems } = useItemsActions()
 	const { handleChange, value } = useInput()
 	const [visible, setVisible] = useState(false)
 	const [itemSelected, setItemSelected] = useState<IItem>()
 
 	const handleModal = (id?: number) => {
 		setVisible(!visible)
-		setItemSelected(items.find((item) => item.id === id))
+		setItemSelected(findItem(id))
 	}
 
 	const onHandleDeleteItem = (id: number | undefined): void => {
