@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { Button, FlatList, ListRenderItem, Text, View } from 'react-native'
 
-import AddItem from '../../components/addItem'
-import Item from '../../components/Item'
-import CustomModal from '../../components/modal'
+import { AddItem, CustomModal, Item } from '../../components'
 
 import { useItemsActions, useInput } from '../../hooks'
 import { IItem } from '../../interfaces'

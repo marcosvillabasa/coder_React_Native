@@ -7,7 +7,7 @@ interface Props {
 	handleModal: () => void
 }
 
-const Item = ({ name, handleModal }: Props) => (
+export const Item = ({ name, handleModal }: Props) => (
 	<View style={styles.itemContainer}>
 		<Text style={styles.itemText}>{name}</Text>
 		<TouchableOpacity onPress={handleModal}>
@@ -16,5 +16,3 @@ const Item = ({ name, handleModal }: Props) => (
 	</View>
 )
 
-
-export default Item

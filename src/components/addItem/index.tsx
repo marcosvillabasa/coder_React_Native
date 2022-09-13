@@ -13,7 +13,7 @@ interface Props {
 	isDisabled: boolean
 }
 
-const AddItem = ({
+export const AddItem = ({
 	placeholder,
 	value,
 	selectionColor = '#016fb9',
@@ -37,4 +37,3 @@ const AddItem = ({
 	)
 }
 
-export default AddItem
