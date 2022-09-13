@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
-export const useInput = <T extends Object>(initialState: T) => {
-	const [value, setValue] = useState(initialState)
+export const useInput = () => {
+	const [value, setValue] = useState('')
 
-	const handleChange = (e: any) => {
-		const { name, value } = e.target
-		setValue((prevState) => ({ ...prevState, [name]: value }))
+	const handleChange = (text: string) => {
+		setValue(text)
 	}
 
 	return {

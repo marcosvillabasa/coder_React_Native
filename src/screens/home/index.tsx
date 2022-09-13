@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { Button, FlatList, ListRenderItem, Text, View } from 'react-native'
+
 import AddItem from '../../components/addItem/AddItem'
 import Item from '../../components/Item'
 import CustomModal from '../../components/modal/CustomModal'
-import useListItems from '../../hooks/useListItems'
+
+import {useListItems, useInput } from '../../hooks'
 import { IItem } from '../../interfaces'
 import { styles } from './styles'
 
 const Home = () => {
-	const { addItem, handleChange, value, items, setItems } = useListItems()
+	const { addItem, items, setItems } = useListItems()
+	const {handleChange,value } = useInput()
 	const [visible, setVisible] = useState(false)
 	const [itemSelected, setItemSelected] = useState<IItem>()
 
@@ -30,7 +33,7 @@ const Home = () => {
 	return (
 		<View style={styles.homeContainer}>
 			<AddItem
-				onPress={addItem}
+				onPress={() => addItem(value)}
 				onChange={handleChange}
 				isDisabled={value === ''}
 				value={value}

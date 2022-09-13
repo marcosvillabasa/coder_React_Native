@@ -6,7 +6,7 @@ interface Props {
 	placeholder?: string
 	value: string
 	selectionColor?: string
-	onChange: () => void
+	onChange: (e: any) => void
 	titleButton: string
 	onPress: () => void
 	color?: string
