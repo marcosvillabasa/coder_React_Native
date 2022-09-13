@@ -1,5 +1,8 @@
 export const data = [
-	{ name: 'Item 1', id: 1 },
-	{ name: 'Item 2', id: 2 },
-	{ name: 'Item 3', id: 3 },
+	{ name: 'Logitech Master Series MX ', id: 1 },
+	{ name: 'Mouse inalámbrico recargable', id: 2 },
+	{ name: 'Logitech G Series G435', id: 3 },
+	{ name: 'HP HyperX Cloud Stinger', id: 4 },
+	{ name: 'Google Chromecast 3.ª generación', id: 5 },
+	{ name: 'Xiaomi Mi TV Stick', id: 6 },
 ]
