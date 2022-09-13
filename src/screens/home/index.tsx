@@ -1,11 +1,5 @@
 import React, { useState } from 'react'
-import {
-	Button,
-	FlatList,
-	ListRenderItem,
-	Text,
-	View,
-} from 'react-native'
+import { Button, FlatList, ListRenderItem, Text, View } from 'react-native'
 import AddItem from '../../components/addItem/AddItem'
 import Item from '../../components/Item'
 import CustomModal from '../../components/modal/CustomModal'
@@ -56,34 +50,18 @@ const Home = () => {
 				transparent={true}
 				onRequestClose={() => console.log('on request')}
 			>
-				<View
-					style={{
-						flex: 1,
-						justifyContent: 'center',
-						alignItems: 'center',
-						backgroundColor: 'rgba(0,0,0,0.5)',
-					}}
-				>
-					<View
-						style={{
-							height: 300,
-							width: '80%',
-							backgroundColor: '#EFEEEE',
-							borderRadius: 5,
-							borderColor: '#0193f4',
-							borderWidth: 2,
-						}}
-					>
-						<View style={styles.modalContent}>
-							<Text>Detalle</Text>
+				<View style={styles.modalBg}>
+					<View style={styles.modalContainer}>
+						<View>
+							<Text style={styles.modalTitle}>Detalle</Text>
 						</View>
-						<View style={styles.modalMessageContainer}>
-							<Text style={styles.modalMessage}>
+						<View>
+							<Text>
 								¿Estas seguro de que quieres eliminar?
 							</Text>
 						</View>
-						<View style={styles.modalMessageContainer}>
-							<Text style={styles.selectedTask}>{itemSelected?.name}</Text>
+						<View>
+							<Text style={styles.selectedItem}>{itemSelected?.name}</Text>
 						</View>
 						<View style={styles.buttonContainer}>
 							<Button
