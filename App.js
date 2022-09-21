@@ -1,11 +1,13 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import Home from './src/screens/home'
+import { Header } from './src/components'
+import StartGameScreen from './src/screens/startGame'
 
 export default function App() {
 	return (
 		<SafeAreaView>
-			<Home />
+			<Header title='Adivina el número' />
+			<StartGameScreen />
 		</SafeAreaView>
 	)
 }
