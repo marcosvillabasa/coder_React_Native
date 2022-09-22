@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 	},
 	headerText: {
 		fontSize: 20,
-		fontWeight: '700',
+		fontFamily: 'Lato-Italic',
 		color: colors.white,
 	},
 })

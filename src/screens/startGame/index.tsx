@@ -2,61 +2,45 @@ import React, { useState } from 'react'
 import {
 	Button,
 	Keyboard,
-	StyleSheet,
 	Text,
 	TouchableWithoutFeedback,
 	View,
 } from 'react-native'
-import { Card } from '../../components'
-import { Input } from '../../components/input'
+import { Card, NumberContainer, Input } from '../../components'
 import { colors } from '../../constants/colors'
+import { styles } from './styles'
 
-const styles = StyleSheet.create({
-	container: {
-		alignItems: 'center',
-	},
-	title: {
-		fontSize: 20,
-		paddingVertical: 20,
-		color: colors.text,
-	},
-	label: {
-		fontSize: 14,
-		color: colors.text,
-		textAlign: 'center',
-		paddingVertical: 10,
-	},
-	inputContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginHorizontal: 20,
-		maxWidth: '80%',
-		width: 320,
-		height: 180,
-		marginBottom: 20,
-	},
-	input: {
-		borderBottomColor: colors.primary,
-		borderBottomWidth: 2,
-		minWidth: 80,
-		fontSize: 20,
-		paddingVertical: 10,
-		marginTop: 10,
-		marginBottom: 20,
-		textAlign: 'center',
-	},
-	buttonContainer: {
-		width: '80%',
-		flexDirection: 'row',
-		justifyContent: 'space-evenly',
-	},
-})
-
-const StartGameScreen = () => {
+const StartGameScreen = ({ onStartGame }: any) => {
 	const [number, setNumber] = useState('')
+	const [selected, setSelected] = useState(0)
+	const [confirmed, setConfirmed] = useState(false)
+
 	const onHandleText = (value: string) => {
 		setNumber(value.replace(/[^0-9]/g, ''))
 	}
+
+	const onReset = () => {
+		setNumber('')
+		setSelected(0)
+		setConfirmed(false)
+		Keyboard.dismiss()
+	}
+
+	const onConfirm = () => {
+		Keyboard.dismiss()
+
+		const choseNumber = parseInt(number, 10)
+		if (isNaN(choseNumber) || choseNumber <= 0 || choseNumber > 99) return
+
+		setConfirmed(true)
+		setSelected(choseNumber)
+		setNumber('')
+	}
+
+	const onHandleStartGame = () => {
+		onStartGame(selected)
+	}
+
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.container}>
@@ -76,16 +60,29 @@ const StartGameScreen = () => {
 					<View style={styles.buttonContainer}>
 						<Button
 							title='Limpiar'
-							onPress={() => console.log('limpia')}
+							onPress={() => onReset()}
 							color={colors.primary}
 						/>
 						<Button
 							title='Confirmar'
-							onPress={() => console.log('limpia')}
+							onPress={onConfirm}
 							color={colors.secondary}
 						/>
 					</View>
 				</Card>
+				{confirmed && (
+					<Card style={styles.summaryContainer}>
+						<Text style={styles.summaryText}>Tu seleccion</Text>
+						<NumberContainer style={styles.numberSelect}>
+							{selected}
+						</NumberContainer>
+						<Button
+							title='Iniciar Juego'
+							onPress={onHandleStartGame}
+							color={colors.primary}
+						/>
+					</Card>
+				)}
 			</View>
 		</TouchableWithoutFeedback>
 	)
