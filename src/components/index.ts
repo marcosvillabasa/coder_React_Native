@@ -1,3 +1,7 @@
 export * from './addItem'
 export * from './Item'
 export * from './modal'
+export * from './header'
+export * from './card'
+export * from './input'
+export * from './numberContainer'
